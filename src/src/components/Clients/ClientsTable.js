@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 
-function ShowClientsTable() {
+function ClientsTable() {
   const [clients, setClients] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -46,6 +46,7 @@ function ShowClientsTable() {
             <TableCell>Lastname</TableCell>
             <TableCell>DNI</TableCell>
             <TableCell>Email</TableCell>
+            <TableCell>Tarjetas</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,6 +56,9 @@ function ShowClientsTable() {
               <TableCell>{client.apellido}</TableCell>
               <TableCell>{client.dni}</TableCell>
               <TableCell>{client.email}</TableCell>
+              {client.tarjetas.map((tarjeta) => (
+                <TableCell key={tarjeta.id}>{tarjeta.metodo}</TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>
@@ -71,4 +75,4 @@ function ShowClientsTable() {
   );
 }
 
-export default ShowClientsTable;
+export default ClientsTable;

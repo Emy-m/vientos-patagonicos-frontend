@@ -1,12 +1,10 @@
 import "./App.css";
-import AddClientForm from "./src/components/Clients/AddClientForm";
-import ShowClientsTable from "./src/components/Clients/ShowClientsTable";
+import Dashboard from "./src/components/Dashboard";
 
 function App() {
   return (
     <div className="App">
-      <AddClientForm />
-      <ShowClientsTable />
+      <Dashboard />
     </div>
   );
 }
