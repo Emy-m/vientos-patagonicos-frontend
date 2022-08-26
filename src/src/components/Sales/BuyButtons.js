@@ -5,21 +5,18 @@ export default function BuyButtons(props) {
   const setResult = props.setResult;
   const [loading, setLoading] = React.useState(false);
   const [price, setPrice] = React.useState(0);
-  const selectedProducts = props.selectedProducts;
+  const selectedProducts = props.selectedProducts.map((product) => product.id);
   const selectedCard = props.selectedCard;
 
   const calculateTotalPrice = () => {
     setResult(null);
     setLoading(true);
-    const productIDs = selectedProducts.map((product) => {
-      return { id: product.id };
-    });
-    console.log(productIDs);
+
     fetch(
       "http://localhost:7070/ventas/precio?tarjeta=" +
         selectedCard +
         "&productos=" +
-        JSON.stringify(productIDs)
+        JSON.stringify(selectedProducts)
     )
       .then((response) => response.json())
       .then((data) => {
@@ -38,16 +35,11 @@ export default function BuyButtons(props) {
   const buy = () => {
     setResult(null);
     setLoading(true);
-    const productIDs = selectedProducts.map((product) => product.id);
     fetch(
-      "http://localhost:7070/ventas?cliente=" +
-        17 +
-        "&tarjeta=" +
-        selectedCard +
-        "&productos=" +
-        productIDs,
+      "http://localhost:7070/ventas?cliente=" + 17 + "&tarjeta=" + selectedCard,
       {
         method: "POST",
+        body: JSON.stringify(selectedProducts),
       }
     )
       .then((response) => response.json())

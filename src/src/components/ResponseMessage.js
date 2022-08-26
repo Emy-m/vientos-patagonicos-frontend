@@ -23,7 +23,7 @@ export default function ResponseMessage(props) {
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
-          severity={result.result}
+          severity={result.result ? result.result : "warning"}
           sx={{ width: "100%" }}
         >
           {result.message}
