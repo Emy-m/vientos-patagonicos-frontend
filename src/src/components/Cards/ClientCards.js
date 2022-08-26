@@ -10,7 +10,7 @@ import {
 export default function ClientCards(props) {
   const [cards, setCards] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const setResult = props.setResult;
   const [value, setValue] = React.useState("");
 
   React.useEffect(() => {
@@ -19,7 +19,7 @@ export default function ClientCards(props) {
 
   const fetchCards = () => {
     setLoading(true);
-    setError(null);
+    setResult(null);
     setValue("");
     setCards([]);
     fetch("http://localhost:7070/clientes/tarjetas/17")
@@ -29,7 +29,7 @@ export default function ClientCards(props) {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        setResult(error);
         setLoading(false);
       });
   };

@@ -12,7 +12,7 @@ export default function ProductsContainer(props) {
   const [products, setProducts] = React.useState([]);
   const [checked, setChecked] = React.useState([0]);
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const setResult = props.setResult;
 
   React.useEffect(() => {
     fetchProducts();
@@ -20,7 +20,7 @@ export default function ProductsContainer(props) {
 
   const fetchProducts = () => {
     setLoading(true);
-    setError(null);
+    setResult(null);
     setChecked([0]);
 
     fetch("http://localhost:7070/productos")
@@ -30,7 +30,7 @@ export default function ProductsContainer(props) {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        setResult(error);
         setLoading(false);
       });
   };

@@ -3,10 +3,10 @@ import { Stack } from "@mui/system";
 import Discount from "./Discount";
 import { Typography } from "@mui/material";
 
-export default function DiscountsContainer() {
+export default function DiscountsContainer(props) {
   const [discounts, setDiscounts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const setResult = props.setResult;
 
   React.useEffect(() => {
     fetchDiscounts();
@@ -14,7 +14,7 @@ export default function DiscountsContainer() {
 
   const fetchDiscounts = () => {
     setLoading(true);
-    setError(null);
+    setResult(null);
 
     fetch("http://localhost:7070/descuentos")
       .then((response) => response.json())
@@ -23,7 +23,7 @@ export default function DiscountsContainer() {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        setResult(error);
         setLoading(false);
       });
   };
