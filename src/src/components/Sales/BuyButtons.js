@@ -11,17 +11,15 @@ export default function BuyButtons(props) {
   const calculateTotalPrice = () => {
     setResult(null);
     setLoading(true);
-    const productIDs = selectedProducts.map((product) => product.id);
-
+    const productIDs = selectedProducts.map((product) => {
+      return { id: product.id };
+    });
+    console.log(productIDs);
     fetch(
-      "http://localhost:7070/ventas/precio?idTarjeta=" +
+      "http://localhost:7070/ventas/precio?tarjeta=" +
         selectedCard +
         "&productos=" +
-        JSON.stringify(
-          productIDs.map((id) => {
-            return { id: id };
-          })
-        )
+        JSON.stringify(productIDs)
     )
       .then((response) => response.json())
       .then((data) => {

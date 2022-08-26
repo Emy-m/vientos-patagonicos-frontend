@@ -40,15 +40,18 @@ export default function ClientCards(props) {
   };
 
   const renderCards = () => {
-    return cards.map((card) => (
-      <FormControlLabel
-        key={card.id}
-        value={card.id}
-        control={<Radio />}
-        label={card.metodo + " - " + card.codigo}
-        onChange={handleChange}
-      />
-    ));
+    return (
+      cards &&
+      cards.map((card) => (
+        <FormControlLabel
+          key={card.id}
+          value={card.id}
+          control={<Radio />}
+          label={card.metodo + " - " + card.codigo}
+          onChange={handleChange}
+        />
+      ))
+    );
   };
 
   return (
