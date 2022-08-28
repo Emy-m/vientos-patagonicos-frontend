@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Container } from "@mui/material";
 import ProductsContainer from "./Products/ProductsContainer";
 import DiscountsContainer from "./Discounts/DiscountsContainer";
 import ClientCards from "./Cards/ClientCards";
@@ -31,7 +31,7 @@ export default function Dashboard() {
   };
 
   return (
-    <Box>
+    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
       <ProductsContainer
         onSelectProduct={handleProductSelect}
         setResult={setResult}
@@ -44,6 +44,6 @@ export default function Dashboard() {
         setResult={setResult}
       />
       <ResponseMessage result={result} />
-    </Box>
+    </Container>
   );
 }

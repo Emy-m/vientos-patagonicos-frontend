@@ -39,7 +39,20 @@ export default function DiscountsContainer(props) {
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         Discounts
       </Typography>
-      <Stack spacing={2}>{renderDiscounts()}</Stack>
+      <Stack spacing={2}>
+        {discounts && discounts.length > 0 ? (
+          renderDiscounts()
+        ) : (
+          <Typography
+            sx={{
+              color: "rgba(0, 0, 0, 0.6)",
+              fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
+            }}
+          >
+            There is no discounts available
+          </Typography>
+        )}
+      </Stack>
     </React.Fragment>
   );
 }

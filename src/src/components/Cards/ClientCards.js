@@ -5,6 +5,7 @@ import {
   FormControlLabel,
   RadioGroup,
   Radio,
+  Typography,
 } from "@mui/material";
 
 export default function ClientCards(props) {
@@ -55,9 +56,14 @@ export default function ClientCards(props) {
   };
 
   return (
-    <FormControl>
-      <FormLabel>Select a card as a payment method</FormLabel>
-      <RadioGroup>{renderCards()}</RadioGroup>
-    </FormControl>
+    <React.Fragment>
+      <Typography component="h2" variant="h6" color="primary" gutterBottom>
+        Cards
+      </Typography>
+      <FormControl>
+        <FormLabel>Select a card as a payment method</FormLabel>
+        <RadioGroup>{renderCards()}</RadioGroup>
+      </FormControl>
+    </React.Fragment>
   );
 }

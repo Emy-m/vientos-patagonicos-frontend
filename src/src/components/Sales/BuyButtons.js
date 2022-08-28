@@ -54,12 +54,21 @@ export default function BuyButtons(props) {
   };
   return (
     <Box>
-      <Box>
-        <Typography component="h2" variant="h6" color="primary" gutterBottom>
-          Total: {price} $
-        </Typography>
-      </Box>
-      <Box>
+      <Typography
+        component="h2"
+        variant="h6"
+        color="primary"
+        gutterBottom
+        sx={{ textAlign: "center" }}
+      >
+        Total: {price} $
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
         <Button
           variant="contained"
           color="primary"
@@ -69,8 +78,6 @@ export default function BuyButtons(props) {
         >
           Calculate
         </Button>
-      </Box>
-      <Box>
         <Button
           variant="contained"
           color="primary"
