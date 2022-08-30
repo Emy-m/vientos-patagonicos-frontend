@@ -1,37 +1,25 @@
 export default class ClientsService {
-  fetchCards = (client) => {
-    let data = null;
-
-    fetch("http://localhost:7070/clientes/tarjetas/" + client)
+  fetchCards = async (idClient) => {
+    return fetch("http://localhost:7070/clientes/tarjetas/" + idClient)
       .then((response) => response.json())
-      .then((_data) => {
-        data = _data;
-      })
-      .catch((error) => {});
-
-    return data;
+      .then((data) => Promise.resolve(data.tarjetas))
+      .catch((error) => Promise.reject(error));
   };
 
-  fetchClients = () => {
-    let data = null;
-
-    fetch("http://localhost:7070/clientes")
+  fetchClients = async () => {
+    return fetch("http://localhost:7070/clientes")
       .then((response) => response.json())
-      .then((_data) => {
-        data = _data;
-      })
-      .catch((error) => {});
-
-    return data;
+      .then((data) => Promise.resolve(data.clientes))
+      .catch((error) => Promise.reject(error));
   };
 
-  addClient = (client) => {
-    fetch("http://localhost:7070/clientes", {
+  addClient = async (client) => {
+    return fetch("http://localhost:7070/clientes", {
       method: "POST",
       body: JSON.stringify(client),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+      .then((data) => Promise.resolve(data))
+      .catch((error) => Promise.reject(error));
   };
 }

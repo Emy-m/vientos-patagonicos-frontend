@@ -30,6 +30,10 @@ export default function Dashboard() {
     setSelectedCard(card);
   };
 
+  const handleResult = (result) => {
+    setResult(result);
+  };
+
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
       <ProductsContainer
@@ -37,7 +41,10 @@ export default function Dashboard() {
         setResult={setResult}
       />
       <DiscountsContainer setResult={setResult} />
-      <ClientCards onSelectCard={handleCardSelect} setResult={setResult} />
+      <ClientCards
+        handleResult={handleResult}
+        handleCardSelect={handleCardSelect}
+      />
       <BuyButtons
         selectedCard={selectedCard}
         selectedProducts={selectedProducts}

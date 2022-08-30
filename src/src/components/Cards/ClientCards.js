@@ -7,12 +7,12 @@ import {
   Radio,
   Typography,
 } from "@mui/material";
+import ClientsService from "../../services/ClientsService";
 
-export default function ClientCards(props) {
+export default function ClientCards({ handleResult, handleCardSelect }) {
   const [cards, setCards] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const setResult = props.setResult;
-  const [value, setValue] = React.useState("");
+  const clientsService = new ClientsService();
 
   React.useEffect(() => {
     fetchCards();
@@ -20,24 +20,24 @@ export default function ClientCards(props) {
 
   const fetchCards = () => {
     setLoading(true);
-    setResult(null);
-    setValue("");
     setCards([]);
-    fetch("http://localhost:7070/clientes/tarjetas/1")
-      .then((response) => response.json())
-      .then((data) => {
-        setCards(data.tarjetas);
-        setLoading(false);
+    handleResult(null);
+
+    clientsService
+      .fetchCards(17)
+      .then((cards) => {
+        setCards(cards);
       })
       .catch((error) => {
-        setResult(error);
+        handleResult(error);
+      })
+      .finally(() => {
         setLoading(false);
       });
   };
 
   const handleChange = (event) => {
-    setValue(event.target.value);
-    props.onSelectCard(event.target.value);
+    handleCardSelect(event.target.value);
   };
 
   const renderCards = () => {
