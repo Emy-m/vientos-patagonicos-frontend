@@ -36,7 +36,7 @@ export default function BuyButtons(props) {
     setResult(null);
     setLoading(true);
     fetch(
-      "http://localhost:7070/ventas?cliente=" + 17 + "&tarjeta=" + selectedCard,
+      "http://localhost:7070/ventas?cliente=" + 1 + "&tarjeta=" + selectedCard,
       {
         method: "POST",
         body: JSON.stringify(selectedProducts),
@@ -52,6 +52,7 @@ export default function BuyButtons(props) {
         setLoading(false);
       });
   };
+
   return (
     <Box>
       <Typography

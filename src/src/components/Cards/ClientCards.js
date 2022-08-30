@@ -23,7 +23,7 @@ export default function ClientCards(props) {
     setResult(null);
     setValue("");
     setCards([]);
-    fetch("http://localhost:7070/clientes/tarjetas/17")
+    fetch("http://localhost:7070/clientes/tarjetas/1")
       .then((response) => response.json())
       .then((data) => {
         setCards(data.tarjetas);

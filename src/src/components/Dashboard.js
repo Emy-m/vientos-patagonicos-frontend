@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import ProductsContainer from "./Products/ProductsContainer";
 import DiscountsContainer from "./Discounts/DiscountsContainer";
 import ClientCards from "./Cards/ClientCards";
