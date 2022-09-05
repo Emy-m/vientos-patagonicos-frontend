@@ -24,7 +24,7 @@ export default function ClientCards({ handleResult, handleCardSelect }) {
     handleResult(null);
 
     clientsService
-      .fetchCards(17)
+      .fetchCards(1)
       .then((cards) => {
         setCards(cards);
       })
