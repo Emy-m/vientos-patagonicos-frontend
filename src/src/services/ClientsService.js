@@ -1,10 +1,17 @@
 export default class ClientsService {
   fetchCards = async (idClient) => {
     return fetch("http://localhost:7070/clientes/tarjetas/" + idClient)
-      .then((response) => response.json())
-      .then((data) => data.tarjetas)
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw error;
+          });
+        }
+        return response.json();
+      })
+      .then((data) => Promise.resolve(data.tarjetas))
       .catch((error) => {
-        throw error;
+        return Promise.reject(error);
       });
   };
 
