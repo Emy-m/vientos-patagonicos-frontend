@@ -36,21 +36,24 @@ export default function ProductsContainer(props) {
   };
 
   const renderProducts = () => {
-    return products.map((product) => (
-      <ListItem key={product.id}>
-        <ListItemIcon>
-          <Checkbox
-            checked={checked.indexOf(product.id) !== -1}
-            tabIndex={-1}
-            onClick={handleToggle(product.id)}
+    return (
+      products &&
+      products.map((product) => (
+        <ListItem key={product.id}>
+          <ListItemIcon>
+            <Checkbox
+              checked={checked.indexOf(product.id) !== -1}
+              tabIndex={-1}
+              onClick={handleToggle(product.id)}
+            />
+          </ListItemIcon>
+          <ListItemText
+            primary={product.descripcion + ": " + product.precio + "$"}
+            secondary={product.marca + " - " + product.categoria.nombre}
           />
-        </ListItemIcon>
-        <ListItemText
-          primary={product.descripcion + ": " + product.precio + "$"}
-          secondary={product.marca + " - " + product.categoria.nombre}
-        />
-      </ListItem>
-    ));
+        </ListItem>
+      ))
+    );
   };
 
   const handleToggle = (productID) => () => {
