@@ -6,13 +6,18 @@ import {
   ListItemIcon,
   Checkbox,
   Typography,
+  IconButton,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 
-export default function ProductsContainer(props) {
+export default function ProductsContainer({
+  onSelectProduct,
+  handleProductEdit,
+  setResult,
+}) {
   const [products, setProducts] = React.useState([]);
   const [checked, setChecked] = React.useState([0]);
   const [loading, setLoading] = React.useState(true);
-  const setResult = props.setResult;
 
   React.useEffect(() => {
     fetchProducts();
@@ -35,6 +40,20 @@ export default function ProductsContainer(props) {
       });
   };
 
+  const handleToggle = (productID) => () => {
+    const currentIndex = checked.indexOf(productID);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(productID);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+    onSelectProduct(products.find((product) => product.id === productID));
+  };
+
   const renderProducts = () => {
     return (
       products &&
@@ -51,23 +70,15 @@ export default function ProductsContainer(props) {
             primary={product.descripcion + ": " + product.precio + "$"}
             secondary={product.marca + " - " + product.categoria.nombre}
           />
+          <IconButton
+            component="label"
+            onClick={() => handleProductEdit(product)}
+          >
+            <EditIcon />
+          </IconButton>
         </ListItem>
       ))
     );
-  };
-
-  const handleToggle = (productID) => () => {
-    const currentIndex = checked.indexOf(productID);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(productID);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-    props.onSelectProduct(products.find((product) => product.id === productID));
   };
 
   return (
