@@ -29,4 +29,11 @@ export default class SellingsService {
       .then((_data) => {})
       .catch((error) => {});
   };
+
+  getLastSells = (client) => {
+    return fetch("http://localhost:7070/ventas/ultimas/" + client.id)
+      .then((response) => response.json())
+      .then((data) => Promise.resolve(data.ventas))
+      .catch((error) => Promise.reject(error));
+  };
 }

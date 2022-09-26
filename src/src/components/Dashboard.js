@@ -6,6 +6,7 @@ import ClientCards from "./Cards/ClientCards";
 import BuyButtons from "./Sales/BuyButtons";
 import ResponseMessage from "./ResponseMessage";
 import ProductForm from "./Products/ProductForm";
+import LastSales from "./Sales/LastSales";
 
 export default function Dashboard() {
   const [selectedProducts, setSelectedProducts] = React.useState([]);
@@ -52,6 +53,7 @@ export default function Dashboard() {
         handleResult={handleResult}
         handleCardSelect={handleCardSelect}
       />
+      <LastSales handleResult={handleResult} />
       <BuyButtons
         selectedCard={selectedCard}
         selectedProducts={selectedProducts}
